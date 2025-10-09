@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:unit_test/user_model.dart';
+import 'package:unit_test/user_repository.dart';
 import 'package:unit_test/counter.dart';
 
 void main() {
@@ -41,6 +43,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Future<User> getUsers = UserRepository(Client()).getUser();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -54,6 +58,15 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               '${counter.count}',
               style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            FutureBuilder(
+              future: getUsers,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                }
+                return Text('${snapshot.data}');
+              },
             ),
           ],
         ),
