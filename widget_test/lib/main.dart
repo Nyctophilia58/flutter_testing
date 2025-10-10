@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:widget_test/counter/home_page.dart';
+import 'package:widget_test/users_example/home_screen.dart';
+import 'package:widget_test/users_example/user_repository.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,16 +11,32 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   // ------ This is the original code for the counter app ------
+  // @override
+  // Widget build(BuildContext context) {
+  //   return MaterialApp(
+  //     title: 'Flutter Demo',
+  //     theme: ThemeData(
+  //       colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+  //     ),
+  //     home: const MyHomePage(title: 'Home Page'),
+  //   );
+  // }
+
+
+
+
+  // ------ This is the modified code for the users example ------
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Users Example',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Home Page'),
+      home: HomeScreen(
+        futureUsers: UserRepository().fetchUsers(),
+      ),
     );
   }
-
 }
 
