@@ -3,6 +3,8 @@ import 'package:widget_test/counter/home_page.dart';
 import 'package:widget_test/users_example/home_screen.dart';
 import 'package:widget_test/users_example/user_repository.dart';
 
+import 'animation_example/animation_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -14,7 +16,7 @@ class MyApp extends StatelessWidget {
   // @override
   // Widget build(BuildContext context) {
   //   return MaterialApp(
-  //     title: 'Flutter Demo',
+  //     title: 'Counter App',
   //     theme: ThemeData(
   //       colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
   //     ),
@@ -26,17 +28,30 @@ class MyApp extends StatelessWidget {
 
 
   // ------ This is the modified code for the users example ------
+  // @override
+  // Widget build(BuildContext context) {
+  //   return MaterialApp(
+  //     title: 'Users Example',
+  //     theme: ThemeData(
+  //       primarySwatch: Colors.blue,
+  //     ),
+  //     home: HomeScreen(
+  //       futureUsers: UserRepository().fetchUsers(),
+  //     ),
+  //   );
+  // }
+
+
+
+  // ------ This is the modified code for the animation example ------
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Users Example',
+      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(
-        futureUsers: UserRepository().fetchUsers(),
-      ),
+      home: const AnimationScreen(),
     );
   }
 }
-
