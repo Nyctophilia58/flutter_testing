@@ -9,7 +9,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: MyHomePage(
-            title: 'Home Page',
+            title: 'Home Page', // title is required
           ),
         ),
       );
@@ -21,7 +21,7 @@ void main() {
       // Tap the '+' icon and trigger a frame.
       // final incrementBtn = find.byType(FloatingActionButton); // since there is only one FloatingActionButton in the widget tree
       final incrementBtn = find.byKey(const Key('increment_btn')); // better to use key if there are multiple FloatingActionButton in the widget tree
-      await tester.tap(incrementBtn); // simulate a tap on the button
+      await tester.tap(incrementBtn); // simulations a tap on the button
       // cant call tester.pumpWidget() here because it will reset the state of the widget
       await tester.pump(); // rebuild the widget after the state has changed
 
@@ -34,8 +34,6 @@ void main() {
 
       // to check appBar is present
       expect(find.byType(AppBar), findsOneWidget);
-
-
     }
   );
 }

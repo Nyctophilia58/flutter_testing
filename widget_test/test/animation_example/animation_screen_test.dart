@@ -6,7 +6,7 @@ void main() {
   group('AnimationScreen Widget Tests', () {
     testWidgets(
       'All together - ',
-          (WidgetTester tester) async {
+      (WidgetTester tester) async {
         // Build the AnimationScreen widget.
         await tester.pumpWidget(const MaterialApp(home: AnimationScreen()));
 
@@ -44,7 +44,6 @@ void main() {
         final updatedBoxDecoration = updatedContainer.decoration as BoxDecoration;
         expect(updatedBoxDecoration.color, isNot(Colors.blue));
         expect(updatedBoxDecoration.borderRadius, isNot(BorderRadius.zero));
-
       }
     );
 

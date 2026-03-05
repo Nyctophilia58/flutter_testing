@@ -52,7 +52,7 @@ import 'package:mockito/mockito.dart';
 //           () => mockHttpClient.get(
 //             Uri.parse('https://dummyjson.com/users/1'),
 //           ),
-//         ).thenAnswer((invocation) async {
+//         ).thenAnswer((invocation) async {   // explicitly named (allows you to inspect the call)
 //           return Response('Some Error Occurred', 404);
 //         });
 //         // Act
@@ -68,20 +68,23 @@ import 'package:mockito/mockito.dart';
 
 
 // ----- Using Mockito package -----
-@GenerateMocks([http.Client])
+@GenerateMocks([http.Client])  // auto generates a mock class for http.client
 import 'user_repository_test.mocks.dart';
 
 void main() {
   late UserRepository userRepository;
   late MockClient mockHttpClient;
 
+  // Runs before every test to provide fresh test state
   setUp(() {
     mockHttpClient = MockClient();
     userRepository = UserRepository(mockHttpClient);
   });
+
   group('UserRepository - ', () {
     group('getUser - ', () {
       test('given UserRepository class when getUser is called and status code is 200 then a user model should be returned', () async{
+
         // Arrange
         when(mockHttpClient.get(
           Uri.parse('https://dummyjson.com/users/1'),
@@ -100,20 +103,25 @@ void main() {
             ''',
               200);
         });
+
         // Act
-        final user = await userRepository.getUser();
+        final user = await userRepository.getUser();   // triggers the mocked HTTP request
+
         // Assert
         expect(user, isA<User>());
       });
 
       test('given UserRepository class when getUser is called and status code is not 200 then an exception should be thrown', () async{
+
         // Arrange
         when(mockHttpClient.get(
           Uri.parse('https://dummyjson.com/users/1'),
         ),
         ).thenAnswer((_) async => Response('Some Error Occurred', 404));
+
         // Act
-        final user = userRepository.getUser();
+        final user = userRepository.getUser();   // no await because we're testing that it throws
+
         // Assert
         expect(user, throwsException);
       });

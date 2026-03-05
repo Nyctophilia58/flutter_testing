@@ -7,17 +7,18 @@ void main() {
   testWidgets(
     'Displays List of users with name as title and email as subtitle',
     (WidgetTester tester) async {
+      // demo users to send
       final users = [
-        User(id: 1, name: 'John Doe', email: 'john.doe!gmail.com'),
-        User(id: 2, name: 'Jane Smith', email: 'jane.smith!gmail.com'),
+        User(id: 1, name: 'John Doe', email: 'john.doe@gmail.com'),
+        User(id: 2, name: 'Jane Smith', email: 'jane.smith@gmail.com'),
       ];
 
-      // we need to pass an future list os users to the HomeScreen
+      // we need to pass an future list as users to the HomeScreen
       // -- without delay --
       // Future<List<User>> mockFetchUsers() async {
       //   return users;
       // }
-      // -- with delay to simulate network call --
+      // -- with delay to simulations network call --
       Future<List<User>> mockFetchUsers() async {
         return Future.delayed(
           const Duration(seconds: 1),
@@ -28,7 +29,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: HomeScreen(
-            futureUsers: mockFetchUsers(),
+            futureUsers: mockFetchUsers(), // required
           ),
         ),
       );

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:widget_test/counter/home_page.dart';
+import 'package:widget_test/simulations/scrollable_list.dart';
+import 'package:widget_test/simulations/user_interaction.dart';
 import 'package:widget_test/users_example/home_screen.dart';
 import 'package:widget_test/users_example/user_repository.dart';
 
@@ -44,14 +46,41 @@ class MyApp extends StatelessWidget {
 
 
   // ------ This is the modified code for the animation example ------
+  // @override
+  // Widget build(BuildContext context) {
+  //   return MaterialApp(
+  //     title: 'Flutter Demo',
+  //     theme: ThemeData(
+  //       primarySwatch: Colors.blue,
+  //     ),
+  //     home: const AnimationScreen(),
+  //   );
+  // }
+
+  // ------ This is the modified code for the animation example ------
+  // @override
+  // Widget build(BuildContext context) {
+  //   return MaterialApp(
+  //     title: 'Flutter Demo',
+  //     theme: ThemeData(
+  //       primarySwatch: Colors.blue,
+  //     ),
+  //     home: ScrollableList(items: List<String>.generate(10000, (i) => 'Item $i')),
+  //   );
+  // }
+
+  static const _appTitle = 'Todo List';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: _appTitle,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const AnimationScreen(),
+      home: UserInteraction(appTitle: _appTitle)
     );
   }
+
+
 }
